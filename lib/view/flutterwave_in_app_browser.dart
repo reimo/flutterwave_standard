@@ -63,11 +63,10 @@ class FlutterwaveInAppBrowser extends InAppBrowser {
         status: status,
         transactionId: "$id",
         txRef: txRef,
-        success: status?.contains("success") == true
+        success: status?.toString().toLowerCase() == "success" ||
+            status?.toString().toLowerCase() == "completed",
     );
     _closeTransactionScreen(chargeResponse);
-    // callBack.onTransactionComplete(chargeResponse);
-    // close();
   }
 
   _finish(final Uri uri) {
@@ -78,7 +77,8 @@ class FlutterwaveInAppBrowser extends InAppBrowser {
         status: status,
         transactionId: id,
         txRef: txRef,
-        success: status?.contains("success") == true
+        success: status?.toLowerCase() == "success" ||
+            status?.toLowerCase() == "completed",
     );
     _closeTransactionScreen(chargeResponse);
     // callBack.onTransactionComplete(chargeResponse);
